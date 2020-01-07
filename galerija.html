@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Tower Fitness - Galerija</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- Add jQuery library -->
+	<script type="text/javascript" src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/lib/jquery-1.10.1.min.js"></script>
+
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/source/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/fancyapps-fancyBox-18d1712/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$('.fancybox').fancybox();
+
+			/*
+			 *  Different effects
+			 */
+
+			// Change title type, overlay closing speed
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			$(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			$(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				openEffect : 'none',
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background' : 'rgba(238,238,238,0.85)'
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			$(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+
+			/*
+			 *  Button helper. Disable animations, hide close button, change title type and content
+			 */
+
+			$('.fancybox-buttons').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+
+			/*
+			 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			 */
+
+			$('.fancybox-thumbs').fancybox({
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+				arrows    : false,
+				nextClick : true,
+
+				helpers : {
+					thumbs : {
+						width  : 50,
+						height : 50
+					}
+				}
+			});
+
+			/*
+			 *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+			*/
+			$('.fancybox-media')
+				.attr('rel', 'media-gallery')
+				.fancybox({
+					openEffect : 'none',
+					closeEffect : 'none',
+					prevEffect : 'none',
+					nextEffect : 'none',
+
+					arrows : false,
+					helpers : {
+						media : {},
+						buttons : {}
+					}
+				});
+
+			/*
+			 *  Open manually
+			 */
+
+			$("#fancybox-manual-a").click(function() {
+				$.fancybox.open('1_b.jpg');
+			});
+
+
+			$("#fancybox-manual-b").click(function() {
+				$.fancybox.open({
+					href : 'iframe.html',
+					type : 'iframe',
+					padding : 5
+				});
+			});
+
+			$("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : '1_b.jpg',
+						title : 'My title'
+					}, {
+						href : '2_b.jpg',
+						title : '2nd title'
+					}, {
+						href : '3_b.jpg'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+		});
+	</script>  
+<style type="text/css">
+.fancybox-custom .fancybox-skin {
+			box-shadow: 0 0 50px #222;
+		}
+			ul {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 18px;
+	list-style: none;
+	margin-top: 0;
+	margin-right: 0px;
+	margin-bottom: 0;
+	margin-left: 0px;
+	font-style: italic;
+	font-weight: bold;
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+			}
+			ul li {
+	display: block;
+	position: relative;
+	float: left;
+	visibility: inherit;
+			}
+			li ul {
+	display: none;
+}
+			ul li a {
+	display: block;
+	text-decoration: none;
+	color: #999999;
+	white-space: nowrap;
+	padding-top: 12px;
+	padding-bottom: 5px;
+	background-color: #393939;
+	padding-left: 8px;
+	padding-right: 12px;
+	margin-left: 1px;
+			}
+			
+			ul li a:hover {
+	background-color: #c32332;
+	color: #FFF;
+}
+			li:hover ul {
+				display: block;
+				position: absolute;
+			}
+			li:hover li {
+	float: none;
+	font-size: 11px;
+		}
+		li:hover a {
+	background-color: #c32332;
+	color: #FFF;
+}
+		li:hover li a:hover {
+	background-color: #c32332;
+	color: #FFF;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-image: url(images/pozadina.jpg);
+}
+#header {
+	height: 90px;
+	width: 920px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	margin-left: 450px;
+}
+	
+#wrapper {
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	height: 1460px;
+	width: 920px;
+}
+#header1 {
+	height: 40px;
+	width: 920px;
+}
+#navbar {
+	height: 40px;
+	width: 920px;
+	margin-left: auto;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	overflow: visible;
+}
+#menu {
+	float: left;
+	height: 40px;
+	width: 920px;
+	margin-bottom: 20px;
+}
+#galerija {
+	background-color: #393939;
+	float: left;
+	height: 25px;
+	width: 910px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 16px;
+	color: #FFF;
+	font-style: italic;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-left: 10px;
+	margin-top: 10px;
+}
+#menu2 {
+	float: left;
+	height: 1280px;
+	width: 920px;
+	background-color: #FFF;
+	margin-top: 10px;
+}
+#slike {
+	float: left;
+	height: 150px;
+	width: 863px;
+	padding-left: 30px;
+	padding-top: 7px;
+}
+#footer {
+	float: right;
+	width: 920px;
+	height: 30px;
+	margin-top: 10px;
+	background-color: #393939;
+}
+a:hover {
+	color: #223A90;
+}
+</style>
+</head>
+
+<body>
+<div id="header"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/main-logo.png" width="240" height="95" /></div>
+  <div id="wrapper">
+  <div id="header1">
+  <div id="navbar">
+  <div id="menu">
+ <ul id="menu">
+ <li><a href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/index.html">NASLOVNA</a></li>
+        <li><a href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/novosti.html">NOVOSTI</a></li>
+        <li><a href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/aktivnosti.html">AKTIVNOSTI</a></li>
+  <li><a href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/privatni_trening.html">PRIVATNI TRENING</a></li>
+  <li><a href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/cjenik.html">CJENIK</a></li>
+  <li><a href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/savjeti.html">SAVJETI</a></li>
+  <li><a href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/o nama.html">O NAMA</a></li>
+  <li><a href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/kontakt.html">KONTAKT</a></li>
+ </ul>
+    </div> 
+  </div>
+  </div>
+<div id="galerija">GALERIJA FOTOGRAFIJA</div>
+<div id="menu2">
+<div id="slike">
+	<p>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic14.png"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic14_s.png" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic15.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic15_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic16.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic16_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic17.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic17_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic18.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic18_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic19.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic19_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic20.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic20_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic21.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic21_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic22.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic22_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic23.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic23_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic24.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic24_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic25.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic25_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic26.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic26_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic27.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic27_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic28.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic28_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic29.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic29_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic30.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic30_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic31.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic31_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic32.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic32_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic33.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic33_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic34.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic34_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic35.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic35_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic36.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic36_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic37.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic37_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file://C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic38.jpg"><img src="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic38_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic39.jpg"><img src="file:///http://C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic39_s.jpg" alt="" /></a>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic40.jpg"><img src="file:///http://C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic40_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic42.jpg"><img src="file:///http://C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic42_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic43.jpg"><img src="file:///http://C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic43_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic45.jpg"><img src="file:///http://C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic45_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic46.jpg"><img src="file:///http://C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic46_s.jpg" alt="" /></a>
+        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="file:///C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic47.jpg"><img src="file:///http://C:\Users\ddomo\OneDrive\Radna površina\Web stranica/images/pic47_s.jpg" alt="" /></a>
+	</p>
+    </div>
+</div>
+<div id="footer"></div>
+</div>
+</body>
+</html>
